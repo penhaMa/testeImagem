@@ -43,7 +43,7 @@ namespace testeImagem
 
             imagem_byte = br.ReadBytes((int)fstream.Length);
 
-            string sintax = "INSERT INTO pessoa (nome,foto) values (@nome,@foto)";
+            string sintax = "INSERT INTO pessoa (nome,unidade,CPF,cidade,estado,celular,foto) values (@nome,@unidade,@CPF,@cidade,@estado,@celular,@foto)";
             string conexao = "server=localhost;database=cadastro;Uid=root;password=";
 
             MySqlConnection CONEXAO = new MySqlConnection(conexao);
@@ -57,6 +57,16 @@ namespace testeImagem
                 CONEXAO.Open();
 
                 comando_inserir.Parameters.Add(new MySqlParameter("@nome", nomeCC.Text));
+
+                comando_inserir.Parameters.Add(new MySqlParameter("@unidade", unidade.Text));
+
+                comando_inserir.Parameters.Add(new MySqlParameter("@CPF", CPF.Text));
+
+                comando_inserir.Parameters.Add(new MySqlParameter("@cidade", cidade.Text));
+
+                comando_inserir.Parameters.Add(new MySqlParameter("@estado", estado.Text));
+
+                comando_inserir.Parameters.Add(new MySqlParameter("@celular", celular.Text));
 
                 comando_inserir.Parameters.Add(new MySqlParameter("@foto", imagem_byte));
 
@@ -72,6 +82,11 @@ namespace testeImagem
             { 
                 CONEXAO.Close(); 
             }
+
+        }
+
+        private void nomeCC_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }//Fim da classe

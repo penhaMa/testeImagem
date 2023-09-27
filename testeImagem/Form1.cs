@@ -32,7 +32,7 @@ namespace testeImagem
 
             MySqlConnection CONEXAO = new MySqlConnection(conexao);
 
-            MySqlCommand comando_buscar = new MySqlCommand("SELECT * FROM pessoas ORDER BY RAND() LIMIT 1", CONEXAO);
+            MySqlCommand comando_buscar = new MySqlCommand("SELECT * FROM pessoa ORDER BY RAND() LIMIT 1", CONEXAO);
 
             MySqlDataReader reader;
 
@@ -45,8 +45,18 @@ namespace testeImagem
                 while (reader.Read()) 
                 { 
                     string nome = reader.GetString("nome");
+                    string unidade = reader.GetString("unidade");
+                    int CPF = reader.GetInt32("CPF");
+                    string cidade = reader.GetString("cidade");
+                    string estado = reader.GetString("estado");
+                    int celular = reader.GetInt32("celular");
 
                     txt_nome.Text = nome.ToString();
+                    txt_unidade.Text = unidade.ToString();
+                    txt_CPF.Text = CPF.ToString();
+                    txt_cidade.Text = cidade.ToString();
+                    txt_estado.Text = estado.ToString();
+                    txt_celular.Text = celular.ToString();
 
                     byte[] imagem = (byte[])(reader["foto"]);
 
